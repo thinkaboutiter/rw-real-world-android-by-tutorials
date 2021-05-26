@@ -46,13 +46,13 @@ data class CachedPhoto(
     val medium: String,
     val full: String
 ) {
-  companion object {
-    fun fromDomain(animalId: Long, photo: Media.Photo): CachedPhoto {
-      val (medium, full) = photo
+    companion object {
+        fun fromDomain(animalId: Long, photo: Media.Photo): CachedPhoto {
+            val (medium, full) = photo
 
-      return CachedPhoto(animalId, animalId, medium, full)
+            return CachedPhoto(animalId, animalId, medium, full)
+        }
     }
-  }
 
-  fun toDomain(): Media.Photo = Media.Photo(medium, full)
+    fun toDomain(): Media.Photo = Media.Photo(medium, full)
 }

@@ -38,5 +38,5 @@ import com.raywenderlich.android.petsave.common.data.cache.model.cachedorganizat
 import io.reactivex.Flowable
 
 interface Cache {
-  fun storeOrganizations(organizations: List<CachedOrganization>)
+    fun storeOrganizations(organizations: List<CachedOrganization>)
 }

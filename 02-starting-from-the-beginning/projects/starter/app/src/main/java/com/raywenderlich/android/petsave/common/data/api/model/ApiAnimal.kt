@@ -43,7 +43,7 @@ data class ApiAnimal(
     @field:Json(name = "organization_id") val organizationId: String?,
     @field:Json(name = "url") val url: String?,
     @field:Json(name = "type") val type: String?,
-    @field:Json(name = "species") val species:String?,
+    @field:Json(name = "species") val species: String?,
     @field:Json(name = "breeds") val breeds: ApiBreeds?,
     @field:Json(name = "colors") val colors: ApiColors?,
     @field:Json(name = "age") val age: String?,

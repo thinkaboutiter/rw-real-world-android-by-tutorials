@@ -38,17 +38,17 @@ import android.app.Application
 import com.raywenderlich.android.logging.Logger
 import dagger.hilt.android.HiltAndroidApp
 
-class PetSaveApplication: Application() {
+class PetSaveApplication : Application() {
 
-  // initiate analytics, crashlytics, etc
+    // initiate analytics, crashlytics, etc
 
-  override fun onCreate() {
-    super.onCreate()
+    override fun onCreate() {
+        super.onCreate()
 
-    initLogger()
-  }
+        initLogger()
+    }
 
-  private fun initLogger() {
-    Logger.init()
-  }
+    private fun initLogger() {
+        Logger.init()
+    }
 }

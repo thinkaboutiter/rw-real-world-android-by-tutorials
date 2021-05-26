@@ -52,35 +52,35 @@ data class CachedOrganization(
     val country: String,
     val distance: Float
 ) {
-  companion object {
-    fun fromDomain(domainModel: Organization): CachedOrganization {
-      val contact = domainModel.contact
-      val address = contact.address
+    companion object {
+        fun fromDomain(domainModel: Organization): CachedOrganization {
+            val contact = domainModel.contact
+            val address = contact.address
 
-      return CachedOrganization(
-          organizationId = domainModel.id,
-          email = contact.email,
-          phone = contact.phone,
-          address1 = address.address1,
-          address2 = address.address2,
-          city = address.city,
-          state = address.state,
-          postcode = address.postcode,
-          country = address.country,
-          distance = domainModel.distance
-      )
+            return CachedOrganization(
+                organizationId = domainModel.id,
+                email = contact.email,
+                phone = contact.phone,
+                address1 = address.address1,
+                address2 = address.address2,
+                city = address.city,
+                state = address.state,
+                postcode = address.postcode,
+                country = address.country,
+                distance = domainModel.distance
+            )
+        }
     }
-  }
 
-  fun toDomain(): Organization {
-    return Organization(
-        organizationId,
-        Organization.Contact(
-            email,
-            phone,
-            Organization.Address(address1, address2, city, state, postcode, country)
-        ),
-        distance
-    )
-  }
+    fun toDomain(): Organization {
+        return Organization(
+            organizationId,
+            Organization.Contact(
+                email,
+                phone,
+                Organization.Address(address1, address2, city, state, postcode, country)
+            ),
+            distance
+        )
+    }
 }

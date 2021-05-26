@@ -51,19 +51,19 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 @InstallIn(ApplicationComponent::class)
 abstract class CacheModule {
 
-  @Binds
-  abstract fun bindCache(cache: RoomCache): Cache
+    @Binds
+    abstract fun bindCache(cache: RoomCache): Cache
 
-  companion object {
+    companion object {
 
-    @Provides
-    fun provideDatabase(@ApplicationContext context: Context): PetSaveDatabase {
-      return Room.databaseBuilder(context, PetSaveDatabase::class.java, "petsave.db")
-          .build()
+        @Provides
+        fun provideDatabase(@ApplicationContext context: Context): PetSaveDatabase {
+            return Room.databaseBuilder(context, PetSaveDatabase::class.java, "petsave.db")
+                .build()
+        }
+
+        @Provides
+        fun provideOrganizationsDao(petSaveDatabase: PetSaveDatabase): OrganizationsDao =
+            petSaveDatabase.organizationsDao()
     }
-
-    @Provides
-    fun provideOrganizationsDao(petSaveDatabase: PetSaveDatabase): OrganizationsDao =
-        petSaveDatabase.organizationsDao()
-  }
 }
