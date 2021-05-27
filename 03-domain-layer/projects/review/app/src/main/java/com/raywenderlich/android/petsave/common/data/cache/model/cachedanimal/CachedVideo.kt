@@ -45,11 +45,11 @@ data class CachedVideo(
     val animalId: Long,
     val video: String
 ) {
-  companion object {
-    fun fromDomain(animalId: Long, video: Media.Video): CachedVideo {
-      return CachedVideo(animalId = animalId, video = video.video)
+    companion object {
+        fun fromDomain(animalId: Long, video: Media.Video): CachedVideo {
+            return CachedVideo(animalId = animalId, video = video.video)
+        }
     }
-  }
 
-  fun toDomain(): Media.Video = Media.Video(video)
+    fun toDomain(): Media.Video = Media.Video(video)
 }

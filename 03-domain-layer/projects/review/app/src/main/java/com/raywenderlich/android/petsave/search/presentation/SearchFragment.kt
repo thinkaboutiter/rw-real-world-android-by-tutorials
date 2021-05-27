@@ -35,15 +35,10 @@
 package com.raywenderlich.android.petsave.search.presentation
 
 import android.os.Bundle
-import android.view.*
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
-import androidx.annotation.IdRes
-import androidx.appcompat.widget.SearchView
-import androidx.core.view.isVisible
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.raywenderlich.android.petsave.R
@@ -56,7 +51,7 @@ import okio.IOException
 import retrofit2.HttpException
 
 @AndroidEntryPoint
-class SearchFragment: Fragment() {
+class SearchFragment : Fragment() {
 
     private val binding get() = _binding!!
     private var _binding: FragmentSearchBinding? = null
@@ -65,8 +60,10 @@ class SearchFragment: Fragment() {
         private const val ITEMS_PER_ROW = 2
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
 
         return binding.root

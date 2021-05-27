@@ -36,14 +36,13 @@ package com.raywenderlich.android.petsave.common.data.cache
 
 import com.raywenderlich.android.petsave.common.data.cache.daos.OrganizationsDao
 import com.raywenderlich.android.petsave.common.data.cache.model.cachedorganization.CachedOrganization
-import io.reactivex.Flowable
 import javax.inject.Inject
 
 class RoomCache @Inject constructor(
     private val organizationsDao: OrganizationsDao
 ) : Cache {
 
-  override fun storeOrganizations(organizations: List<CachedOrganization>) {
-    organizationsDao.insert(organizations)
-  }
+    override fun storeOrganizations(organizations: List<CachedOrganization>) {
+        organizationsDao.insert(organizations)
+    }
 }

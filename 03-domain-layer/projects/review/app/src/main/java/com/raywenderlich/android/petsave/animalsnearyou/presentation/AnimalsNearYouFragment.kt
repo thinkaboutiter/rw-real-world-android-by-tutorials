@@ -13,7 +13,11 @@ class AnimalsNearYouFragment : Fragment() {
 
     private var _binding: FragmentAnimalsNearYouBinding? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         _binding = FragmentAnimalsNearYouBinding.inflate(inflater, container, false)
 
         return binding.root
