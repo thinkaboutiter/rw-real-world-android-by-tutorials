@@ -32,46 +32,19 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.petsave.common.domain.model.animal
+package com.raywenderlich.android.petsave.common.domain.model.animal.details
 
-import androidx.annotation.VisibleForTesting
+import com.raywenderlich.android.petsave.common.domain.model.animal.AdoptionStatus
+import com.raywenderlich.android.petsave.common.domain.model.animal.Media
+import org.threeten.bp.LocalDateTime
 
-data class Media(
-    val photos: List<Photo>,
-    val videos: List<Video>
-) {
-
-  companion object {
-    const val EMPTY_MEDIA = ""
-  }
-
-  fun getFirstSmallestAvailablePhoto(): String {
-    if (photos.isEmpty()) return EMPTY_MEDIA
-
-    return photos.first().getSmallestAvailablePhoto()
-  }
-
-  data class Photo(
-      val medium: String,
-      val full: String
-  ) {
-
-    companion object {
-      const val EMPTY_PHOTO = ""
-    }
-
-    fun getSmallestAvailablePhoto(): String {
-      return when {
-        isValidPhoto(medium) -> medium
-        isValidPhoto(full) -> full
-        else -> EMPTY_PHOTO
-      }
-    }
-
-    private fun isValidPhoto(photo: String): Boolean {
-      return photo.isNotEmpty()
-    }
-  }
-
-  data class Video(val video: String)
-}
+data class AnimalWithDetails(
+    val id: Long,
+    val name: String,
+    val type: String,
+    val details: Details,
+    val media: Media,
+    val tags: List<String>,
+    val adoptionStatus: AdoptionStatus,
+    val publishedAt: LocalDateTime
+)
