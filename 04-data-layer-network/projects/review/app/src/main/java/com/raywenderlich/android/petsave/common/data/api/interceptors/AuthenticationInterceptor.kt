@@ -58,8 +58,36 @@ class AuthenticationInterceptor @Inject constructor(
   }
 
   override fun intercept(chain: Interceptor.Chain): Response {
-    // Replace with your code
-    return chain.proceed(chain.request())
+    val token = preferences.getToken()
+    val tokenExpirationTime = Instant.ofEpochSecond(preferences.getTokenExpirationTime())
+    val request = chain.request()
+
+    // For requests that don't need authentication
+    // if (chain.request().headers[NO_AUTH_HEADER] != null) return chain.proceed(request)
+    val interceptedRequest: Request
+
+    if (tokenExpirationTime.isAfter(Instant.now())) {
+      // token is still valid, so we can proceed with the request
+      interceptedRequest = chain.createAuthenticatedRequest(token)
+    } else {
+      // Token expired. Gotta refresh it before proceeding with the actual request
+      val tokenRefreshResponse = chain.refreshToken()
+
+      interceptedRequest = if (tokenRefreshResponse.isSuccessful) {
+        val newToken = mapToken(tokenRefreshResponse)
+
+        if (newToken.isValid()) {
+          storeNewToken(newToken)
+          chain.createAuthenticatedRequest(newToken.accessToken!!)
+        } else {
+          request
+        }
+      } else {
+        request
+      }
+    }
+
+    return chain.proceedDeletingTokenIfUnauthorized(interceptedRequest)
   }
 
   private fun Interceptor.Chain.createAuthenticatedRequest(token: String): Request {
@@ -102,7 +130,7 @@ class AuthenticationInterceptor @Inject constructor(
 
   private fun mapToken(tokenRefreshResponse: Response): ApiToken {
     val moshi = Moshi.Builder().build()
-    val tokenAdapter = moshi.adapter<ApiToken>(ApiToken::class.java)
+    val tokenAdapter = moshi.adapter(ApiToken::class.java)
     val responseBody = tokenRefreshResponse.body!! // if successful, this should be good :]
 
     return tokenAdapter.fromJson(responseBody.string()) ?: ApiToken.INVALID
