@@ -43,18 +43,18 @@ data class CachedAnimalAggregate(
     val tags: List<CachedTag>
 ) {
 
-  companion object {
-    fun fromDomain(animalWithDetails: AnimalWithDetails): CachedAnimalAggregate {
-      return CachedAnimalAggregate(
-          animal = CachedAnimalWithDetails.fromDomain(animalWithDetails),
-          photos = animalWithDetails.media.photos.map {
-            CachedPhoto.fromDomain(animalWithDetails.id, it)
-          },
-          videos = animalWithDetails.media.videos.map {
-            CachedVideo.fromDomain(animalWithDetails.id, it)
-          },
-          tags =  animalWithDetails.tags.map { CachedTag(it) }
-      )
+    companion object {
+        fun fromDomain(animalWithDetails: AnimalWithDetails): CachedAnimalAggregate {
+            return CachedAnimalAggregate(
+                animal = CachedAnimalWithDetails.fromDomain(animalWithDetails),
+                photos = animalWithDetails.media.photos.map {
+                    CachedPhoto.fromDomain(animalWithDetails.id, it)
+                },
+                videos = animalWithDetails.media.videos.map {
+                    CachedVideo.fromDomain(animalWithDetails.id, it)
+                },
+                tags = animalWithDetails.tags.map { CachedTag(it) }
+            )
+        }
     }
-  }
 }

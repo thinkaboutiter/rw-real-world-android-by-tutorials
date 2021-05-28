@@ -42,7 +42,7 @@ class RoomCache @Inject constructor(
     private val organizationsDao: OrganizationsDao
 ) : Cache {
 
-  override suspend fun storeOrganizations(organizations: List<CachedOrganization>) {
-    organizationsDao.insert(organizations)
-  }
+    override suspend fun storeOrganizations(organizations: List<CachedOrganization>) {
+        organizationsDao.insert(organizations)
+    }
 }

@@ -45,6 +45,6 @@ import dagger.hilt.components.SingletonComponent
 @InstallIn(SingletonComponent::class)
 abstract class PreferencesModule {
 
-  @Binds
-  abstract fun providePreferences(preferences: PetSavePreferences): Preferences
+    @Binds
+    abstract fun providePreferences(preferences: PetSavePreferences): Preferences
 }

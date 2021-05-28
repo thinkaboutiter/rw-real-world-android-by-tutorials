@@ -37,5 +37,5 @@ package com.raywenderlich.android.petsave.common.data.cache
 import com.raywenderlich.android.petsave.common.data.cache.model.cachedorganization.CachedOrganization
 
 interface Cache {
-  suspend fun storeOrganizations(organizations: List<CachedOrganization>)
+    suspend fun storeOrganizations(organizations: List<CachedOrganization>)
 }

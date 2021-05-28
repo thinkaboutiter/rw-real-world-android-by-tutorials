@@ -45,10 +45,10 @@ import dagger.hilt.components.SingletonComponent
 @InstallIn(SingletonComponent::class)
 abstract class CacheModule {
 
-  companion object {
+    companion object {
 
-    @Provides
-    fun provideOrganizationsDao(petSaveDatabase: PetSaveDatabase): OrganizationsDao =
-        petSaveDatabase.organizationsDao()
-  }
+        @Provides
+        fun provideOrganizationsDao(petSaveDatabase: PetSaveDatabase): OrganizationsDao =
+            petSaveDatabase.organizationsDao()
+    }
 }
